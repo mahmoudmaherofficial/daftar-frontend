@@ -1,0 +1,22 @@
+.hero-section {
+  background: url('/images/hero-bg.jpg');
+  background-position: top center;
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+  min-height: calc(100vh - 76px);
+
+  & * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--background);
+  opacity: .7;
+  z-index: 1;
+}

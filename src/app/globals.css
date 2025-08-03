@@ -1,26 +1,48 @@
 @import "tailwindcss";
 
+@utility container {
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #024897;
+  --primary-hover: #2d75c9;
+  --secondary: #368C78;
+  --secondary-hover: #6FC1A1;
+  --background: #F8FAFC;
+  --background-transparent: #F8FAFC80;
+  --card: #ffffff;
+  --text: #1F2937;
+  --shadow: rgba(31, 41, 55, 0.1);
+  --text-muted: #6B7280;
+  --border: #E5E7EB;
+  --danger: #dc2626;
+  --warning: #f59e0b;
+  --white: #fff;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root[data-theme="dark"] {
+  --primary: #2d75c9;
+  --primary-hover: #5091da;
+  --secondary: #6FC1A1;
+  --secondary-hover: #92d3bc;
+  --background: #0f172a;
+  --background-transparent: #0f172a80;
+  --card: #1e293b;
+  --text: #F8FAFC;
+  --shadow: rgba(248, 250, 252, 0.1);
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --danger: #f87171;
+  --warning: #facc15;
+  --white: #fff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+* {
+  box-sizing: border-box;
 }
