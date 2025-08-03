@@ -1,4 +1,4 @@
-import LoginForm from "@/components/forms/loginForm/loginForm";
+import RegisterForm from "@/components/forms/registerForm/registerForm";
 
 const Page = () => {
   return (
@@ -11,7 +11,7 @@ const Page = () => {
         }}
         className="absolute inset-0 -z-1 opacity-10"
       />
-      <LoginForm />
+      <RegisterForm />
     </main>
   );
 };

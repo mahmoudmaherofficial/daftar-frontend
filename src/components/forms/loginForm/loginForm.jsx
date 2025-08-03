@@ -5,7 +5,7 @@ import Link from "next/link";
 import "./loginForm.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import FormError from "./formError/formError";
+import FormError from "../formError/formError";
 import axios from "axios";
 import toast from "react-hot-toast";
 
