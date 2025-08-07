@@ -15,10 +15,13 @@ export async function middleware(req) {
     pathname.startsWith(route.path)
   );
 
-  // إذا لم يكن هناك مسار محمي، واصل الطلب
+  // ✅ إعادة التوجيه من "/" إلى "/dashboard" إذا كان المستخدم مسجل دخول
+  if (pathname === "/" && accessToken) {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
+  }
+
   if (!matchedRoute) return NextResponse.next();
 
-  // إذا كان المسار /login أو /register ولا يوجد accessToken، اسمح بالوصول
   if (
     (matchedRoute.path === "/login" || matchedRoute.path === "/register") &&
     !accessToken
@@ -26,7 +29,6 @@ export async function middleware(req) {
     return NextResponse.next();
   }
 
-  // إذا كان هناك accessToken ويحاول الوصول إلى /login أو /register، اعمل redirect للرئيسية
   if (
     (matchedRoute.path === "/login" || matchedRoute.path === "/register") &&
     accessToken
@@ -34,12 +36,10 @@ export async function middleware(req) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
-  // إذا لم يكن هناك accessToken لمسار محمي، اعمل redirect لـ /login
   if (!accessToken) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  // تحقق من صلاحية الـ accessToken ودور المستخدم
   try {
     const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/me`, {
       withCredentials: true,
@@ -50,7 +50,6 @@ export async function middleware(req) {
 
     const user = res.data.user;
 
-    // تحقق من أدوار المستخدم إذا كان المسار يتطلب أدوار معينة
     if (matchedRoute.roles && !matchedRoute.roles.includes(user.role)) {
       return NextResponse.redirect(new URL("/unauthorized", req.url));
     }
@@ -62,8 +61,10 @@ export async function middleware(req) {
   }
 }
 
+
 export const config = {
   matcher: [
+    "/",
     "/login",
     "/register",
     "/dashboard",

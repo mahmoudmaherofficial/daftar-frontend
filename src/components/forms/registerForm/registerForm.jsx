@@ -6,15 +6,13 @@ import "./registerForm.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import FormError from "../formError/formError";
-import axios from "axios";
 import toast from "react-hot-toast";
+import cAxios from "@/lib/axios/cAxios";
 
 const RegisterForm = () => {
   const RegisterApi = async (values) => {
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/register`, values, {
-        withCredentials: true,
-      });
+      const res = await cAxios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/register`, values);
       toast.success(res.data.message);
       location.replace("/");
     } catch (error) {

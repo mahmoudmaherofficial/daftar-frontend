@@ -2,7 +2,7 @@ import RegisterForm from "@/components/forms/registerForm/registerForm";
 
 const Page = () => {
   return (
-    <main className="min-h-[calc(100vh-70px)] container flex justify-center items-center">
+    <main className="container flex justify-center items-center">
       <div
         style={{
           backgroundColor: "transparent",

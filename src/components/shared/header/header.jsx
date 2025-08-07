@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggler from "./themeToggler";
 import { useAuth } from "@/context/AuthContext";
-import axios from "axios";
+import cAxios from "@/lib/axios/cAxios";
 
 const Header = () => {
   const scrolled = useScrollPosition(72);
@@ -28,7 +28,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/logout`, {}, { withCredentials: true });
+      const res = await cAxios.post(`/auth/logout`);
       console.log("Logout response:", res.data);
       setUser(null);
       location.replace("/");
@@ -60,7 +60,7 @@ const Header = () => {
           ? "bg-[var(--background-transparent)] py-4 backdrop-blur-3xl rounded-full shadow-sm w-[95%] lg:w-[50%] left-[50%] translate-x-[-50%] top-2"
           : "bg-[var(--background)] py-4 shadow-md w-full left-0 top-0 h-[76px] content-center"
       }`}>
-      <nav className="flex justify-between items-center px-6 relative">
+      <nav className="relative flex items-center justify-between px-6">
         <Logo />
 
         {isMobile ? (
@@ -81,13 +81,7 @@ const Header = () => {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3 }}
                   className="absolute right-0 top-9 mt-4 bg-[var(--background)] text-[var(--text-muted)] border border-[var(--border)] shadow-lg rounded-lg p-4 flex flex-col items-center gap-3 min-w-[200px] z-50">
-                  <Link href="#features" onClick={() => setMenuOpen(false)}>
-                    Features
-                  </Link>
-                  <Link href="#about" onClick={() => setMenuOpen(false)}>
-                    About
-                  </Link>
-                  <div className="flex flex-col w-full items-center gap-5 mt-5">
+                  <div className="flex flex-col items-center w-full gap-5 mt-5">
                     <div className="flex items-center justify-center gap-3">
                       light
                       <ThemeToggler />
@@ -108,31 +102,18 @@ const Header = () => {
             </AnimatePresence>
           </div>
         ) : (
-          <>
-            {!scrolled && (
-              <ul className="flex gap-4 text-lg text-[var(--text-muted)]">
-                <li>
-                  <Link href={"#features"}>Features</Link>
-                </li>
-                <li>
-                  <Link href={"#about"}>About</Link>
-                </li>
-              </ul>
+          <div className="flex items-center gap-5">
+            <ThemeToggler />
+            {!user && !loading ? (
+              <Link href={"/login"}>
+                <Button>Login</Button>
+              </Link>
+            ) : (
+              <Button variant="danger" onClick={handleLogout}>
+                Logout
+              </Button>
             )}
-
-            <div className="flex items-center gap-5">
-              <ThemeToggler />
-              {!user && !loading ? (
-                <Link href={"/login"}>
-                  <Button>Login</Button>
-                </Link>
-              ) : (
-                <Button variant="danger" onClick={handleLogout}>
-                  Logout
-                </Button>
-              )}
-            </div>
-          </>
+          </div>
         )}
       </nav>
     </header>

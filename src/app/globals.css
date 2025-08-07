@@ -8,36 +8,59 @@
 :root {
   --primary: #024897;
   --primary-hover: #2d75c9;
+
   --secondary: #368C78;
   --secondary-hover: #6FC1A1;
+
   --background: #F8FAFC;
   --background-transparent: #F8FAFC80;
+
   --card: #ffffff;
+  --card-hover: #f1f5f9;
+
   --text: #1F2937;
-  --shadow: rgba(31, 41, 55, 0.1);
   --text-muted: #6B7280;
+
+  --shadow: rgba(31, 41, 55, 0.1);
   --border: #E5E7EB;
+
   --danger: #dc2626;
+  --danger-hover: #f87171;
+
   --warning: #f59e0b;
+  --warning-hover: #fbbf24;
+
   --white: #fff;
 }
 
 :root[data-theme="dark"] {
   --primary: #2d75c9;
   --primary-hover: #5091da;
+
   --secondary: #6FC1A1;
   --secondary-hover: #92d3bc;
+
   --background: #0f172a;
   --background-transparent: #0f172a80;
+
   --card: #1e293b;
+  --card-hover: #334155;
+
   --text: #F8FAFC;
-  --shadow: rgba(248, 250, 252, 0.1);
   --text-muted: #94a3b8;
+
+  --shadow: rgba(248, 250, 252, 0.1);
   --border: #334155;
+
   --danger: #f87171;
+  --danger-hover: #fb7185;
+
   --warning: #facc15;
+  --warning-hover: #fde047;
+
   --white: #fff;
 }
+
 
 html {
   scroll-behavior: smooth;
@@ -45,4 +68,9 @@ html {
 
 * {
   box-sizing: border-box;
+}
+
+main {
+  margin-top: 76px;
+  min-height: calc(100vh - 146px);
 }

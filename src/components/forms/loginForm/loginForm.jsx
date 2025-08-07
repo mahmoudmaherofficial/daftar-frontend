@@ -6,15 +6,13 @@ import "./loginForm.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import FormError from "../formError/formError";
-import axios from "axios";
 import toast from "react-hot-toast";
+import cAxios from "@/lib/axios/cAxios";
 
 const LoginForm = () => {
   const loginApi = async (values) => {
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`, values, {
-        withCredentials: true,
-      });
+      const res = await cAxios.post(`/auth/login`, values);
       toast.success(res.data.message);
       location.replace("/");
     } catch (error) {
