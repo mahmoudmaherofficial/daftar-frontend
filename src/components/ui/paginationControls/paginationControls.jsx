@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../button/button";
 
-const PaginatonControls = ({ page, setPage, totalPages }) => {
+const PaginationControls = ({ page, setPage, totalPages }) => {
   return (
     <div className="flex items-center justify-center gap-2 mt-6">
       <Button variant="outline" disabled={page === 1} onClick={() => setPage(page - 1)}>
@@ -17,4 +17,4 @@ const PaginatonControls = ({ page, setPage, totalPages }) => {
   );
 };
 
-export default PaginatonControls;
+export default PaginationControls;

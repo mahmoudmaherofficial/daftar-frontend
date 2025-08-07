@@ -2,7 +2,7 @@
 
 import Button from "@/components/ui/button/button";
 import Loading from "@/components/ui/loading/loading";
-import PaginatonControls from "@/components/ui/paginationControls/paginatonControls";
+import PaginationControls from "@/components/ui/paginationControls/paginationControls";
 import cAxios from "@/lib/axios/cAxios";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -156,7 +156,7 @@ export default function InvoicesPage() {
       )}
 
       {/* Pagination Controls */}
-      <PaginatonControls page={page} setPage={setPage} totalPages={totalPages} />
+      <PaginationControls page={page} setPage={setPage} totalPages={totalPages} />
     </main>
   );
 }
